@@ -1,0 +1,26 @@
+{
+  "dependencies": {
+  },
+  "name": "@lightsource/bem-block",
+  "version": "1.0.0",
+  "main": "bem-block.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/light-source/bem-block.git"
+  },
+  "author": "LightSource",
+  "license": "GNU General Public License v2.0",
+  "bugs": {
+    "url": "ttps://github.com/light-source/bem-block/issues"
+  },
+  "homepage": "https://github.com/light-source/bem-block#readme",
+  "description": "Helper for BEM blocks, it will be auto creating instances per each block, supports dynamic content (like ajax) thanks to MutationObserver.",
+  "keywords": [
+    "bem",
+    "block"
+  ]
+}
