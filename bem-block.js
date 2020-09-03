@@ -86,12 +86,6 @@ class Blocks {
             document.body :
             environment;
 
-        // ignore text elements, etc..
-
-        if (!environment.hasOwnProperty('querySelectorAll')) {
-            return;
-        }
-
         let elements = Array.from(environment.querySelectorAll(block.elementSelector));
 
         if (environment.matches(block.elementSelector)) {
