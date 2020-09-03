@@ -2,7 +2,7 @@
   "dependencies": {
   },
   "name": "@lightsource/bem-block",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "bem-block.js",
   "devDependencies": {},
   "scripts": {

@@ -86,6 +86,12 @@ class Blocks {
             document.body :
             environment;
 
+        // ignore text elements, etc..
+
+        if (!environment.hasOwnProperty('querySelectorAll')) {
+            return;
+        }
+
         let elements = Array.from(environment.querySelectorAll(block.elementSelector));
 
         if (environment.matches(block.elementSelector)) {
@@ -105,7 +111,13 @@ class Blocks {
             let blockInstance = null;
 
             try {
+
                 blockInstance = new block.classLink(element);
+
+                if (!blockInstance instanceof Block) {
+                    new Error("Class link isn't extend a Block class");
+                }
+
             } catch (exception) {
 
                 Blocks.Error({
@@ -164,7 +176,7 @@ class Blocks {
 
     onDocumentReady() {
 
-        if (!'MutationObserver' in window) {
+        if (!window.hasOwnProperty('MutationObserver')) {
 
             Blocks.Error({
                 message: "MutationObserver doesn't supported",

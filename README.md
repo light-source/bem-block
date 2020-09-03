@@ -35,3 +35,13 @@ class Start extends bemBlock.Class {
 
 bemBlock.Register('.start', Start);
 ```
+
+Also an error callback is available (e.g. for cases when a passed class link is wrong)
+
+```
+bemBlock.settings.ERROR_CALLBACK = function (errors) {
+
+// TODO
+
+}; 
+```
