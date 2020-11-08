@@ -2,7 +2,7 @@
   "dependencies": {
   },
   "name": "@lightsource/bem-block",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "bem-block.js",
   "devDependencies": {},
   "scripts": {
@@ -13,7 +13,7 @@
     "url": "git+https://github.com/light-source/bem-block.git"
   },
   "author": "LightSource",
-  "license": "GNU General Public License v2.0",
+  "license": "GPL-2.0-only",
   "bugs": {
     "url": "ttps://github.com/light-source/bem-block/issues"
   },
