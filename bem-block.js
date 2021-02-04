@@ -3,6 +3,7 @@ let blockSettings = {
         "DATA_BLOCK": "data-block",
     },
     "ERROR_CALLBACK": null,
+    "IS_ALLOW_MULTIPLE_INSTANCES_PER_ELEMENT": false,
 };
 
 let _blocksInstance = null;
@@ -17,7 +18,9 @@ class Block {
 
         this._element = element;
 
-        // mark the element as already init (special for vue.js, because it re-create html in a constructor)
+        // mark the element as already init
+        // (for case if multiple instances per an element aren't allowed, e.g. for vue.js, because it re-create html in a constructor)
+
         element.setAttribute(blockSettings.attr.DATA_BLOCK, 'block');
 
     }
@@ -100,11 +103,8 @@ class Blocks {
 
         elements.forEach((element, index) => {
 
-            // ignore the element if a block already init
-            // (special for vue.js, because it re-create html in a constructor)
-            // also required placed there, because it's a right way for the environment with inner blocks
-
-            if (element.getAttribute(blockSettings.attr.DATA_BLOCK)) {
+            if (element.getAttribute(blockSettings.attr.DATA_BLOCK) &&
+                !block.isAllowMultipleInstancesPerElement) {
                 return;
             }
 
@@ -156,11 +156,17 @@ class Blocks {
 
     }
 
-    register(elementSelector, classLink) {
+    register(elementSelector, classLink, settings = {}) {
+
+        let isAllowMultipleInstancesPerElement = blockSettings.IS_ALLOW_MULTIPLE_INSTANCES_PER_ELEMENT;
+        isAllowMultipleInstancesPerElement = settings.hasOwnProperty('isAllowMultipleInstancesPerElement') ?
+            settings.isAllowMultipleInstancesPerElement :
+            isAllowMultipleInstancesPerElement;
 
         let block = {
             elementSelector: elementSelector,
             classLink: classLink,
+            isAllowMultipleInstancesPerElement: isAllowMultipleInstancesPerElement,
         };
 
         this._blocks.push(block);
@@ -197,8 +203,9 @@ class Blocks {
 
 export default {
     Class: Block,
-    Register: (elementSelector, classLink) => {
-        Blocks.Instance().register(elementSelector, classLink);
+    // settings : isAllowMultipleInstancesPerElement
+    Register: (elementSelector, classLink, settings = {}) => {
+        Blocks.Instance().register(elementSelector, classLink, settings);
     },
     settings: blockSettings,
 }
